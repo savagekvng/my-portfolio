@@ -1,3 +1,10 @@
+const yearEl = document.querySelector('.year');
+
+const date = new Date();
+const currentYear = date.getFullYear();
+// console.log(currentYear);
+yearEl.innerHTML = currentYear;
+
 let menuIcon = document.querySelector('#menu-icon');
 let navbar = document.querySelector('.navbar');
 
@@ -17,20 +24,14 @@ window.onscroll = () => {
     let id = sec.getAttribute('id');
 
     if (top >= offset && top < offset + height) {
-      navLinks.forEach.apply(links => {
-        links.classList.remove('active');
-        document
-          .querySelector('header nav a{href*=' + id + ']')
-          .classList.add('active');
+      navLinks.forEach(link => {
+        link.classList.remove('active');
       });
+      document
+        .querySelector(`header nav a[href*='${id}']`)
+        .classList.add('active');
     }
   });
-
-  let header = document.querySelector('header');
-  header.classList.toggle('sticky', window.scrollY > 100);
-
-  menuIcon.classList.remove('fa-xmark');
-  navbar.classList.remove('active');
 };
 
 ScrollReveal({
@@ -49,7 +50,7 @@ ScrollReveal().reveal(
 ScrollReveal().reveal('.home-contact h1, .about-img', { origin: 'left' });
 ScrollReveal().reveal('.home-contact p, .about-content', { origin: 'right' });
 
-const typed = new typed('.multiple-text', {
+const typed = new Typed('.multiple-text', {
   strings: ['Frontend Developer', 'Web designer'],
   typeSpeed: 70,
   backspeed: 70,
